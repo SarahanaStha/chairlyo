@@ -12,7 +12,18 @@
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 //
-//
+import { loginselector } from "./selector";
+Cypress.Commands.add("login",() => {
+    cy.get(loginselector.email).type(Cypress.env('USERNAME'));
+    cy.get(loginselector.password).clear().type(Cypress.env('PASSWORD'));
+    cy.xpath(loginselector.login).click();
+});
+
+Cypress.Commands.add("branchAdminLogin", () => {
+  cy.get(loginselector.email).clear().type(Cypress.env("BRANCH_ADMIN_EMAIL"));
+  cy.get(loginselector.password).clear().type(Cypress.env("BRANCH_ADMIN_PASSWORD"));
+  cy.xpath(loginselector.login).click();
+});
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //
