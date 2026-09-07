@@ -33,3 +33,4 @@ describe("Waiting Functionality", () => {
     cy.get("body").should("contain.text", "Session Completed");
   });
 });
+

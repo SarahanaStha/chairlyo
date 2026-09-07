@@ -15,7 +15,7 @@ describe("Branch Add functionality", () => {
   const branchEmail = faker.internet.email();
   const adminEmail = faker.internet.email();
 
-  const phone = "98" + faker.string.numeric(8);
+  const phone = "97" + faker.string.numeric(8);
 
   const password = "Skill@123";
 
@@ -68,19 +68,20 @@ describe("Branch Add functionality", () => {
     cy.xpath(branchselector.editbranch).click({ force: true });
     cy.get("body").should("contain.text", "Save Changes");
     cy.wait(5000);
-    cy.get(branchselector.Branchname).clear().type("Don't Touch");
+    cy.get(branchselector.Branchname).clear().type("Bkt - Don't Touch");
     cy.xpath(branchselector.updatebranch).click({ force: true });
     cy.wait(3000);
-    cy.get("body").should("contain.text", "Don't Touch");
+    cy.get("body").should("contain.text", "Bkt - Don't Touch");
   });
 
   it.only("Verify branch delete functionality", () => {
-    cy.xpath(search.searchclick).type("Tremblay - Kertzmann");
-    cy.get("body").should("contain.text", "Tremblay - Kertzmann");
+    cy.xpath(search.searchclick).type("Bkt - Don't Touch");
+    cy.get("body").should("contain.text", "Bkt - Don't Touch");
+    cy.wait(2000);
     cy.xpath(branchselector.deletebranch).click({ force: true });
     cy.xpath(branchselector.confirmdelete).type("Delete Branch");
     cy.xpath(branchselector.delete).click();
     cy.xpath(search.searchclick).clear();
-    cy.get("body").should("not.contain.text", "Don't Touch");
+    cy.get("body").should("not.contain.text", "Bkt - Don't Touch");
   });
 });
